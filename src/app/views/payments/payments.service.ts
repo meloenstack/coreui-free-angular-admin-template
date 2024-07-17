@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
-export class RemittanceService {
+export class PaymentsService {
   getData() {
     return [
       {

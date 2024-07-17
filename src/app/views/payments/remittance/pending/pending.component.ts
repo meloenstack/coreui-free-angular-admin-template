@@ -1,4 +1,4 @@
-import { RemittanceService } from './../remittance.service';
+import { PaymentsService } from '../../payments.service';
 import { Component, OnInit } from '@angular/core';
 import { TableModule, Table } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
@@ -50,7 +50,7 @@ export interface Customer {
     CommonModule,
     FormsModule,
   ],
-  providers: [RemittanceService],
+  providers: [PaymentsService],
 })
 export class PendingComponent implements OnInit {
   customers!: Customer[];
@@ -63,10 +63,10 @@ export class PendingComponent implements OnInit {
 
   activityValues: number[] = [0, 100];
 
-  constructor(private remittanceService: RemittanceService) {}
+  constructor(private paymentsService: PaymentsService) {}
 
   ngOnInit() {
-    this.remittanceService.getCustomersLarge().then((customers) => {
+    this.paymentsService.getCustomersLarge().then((customers) => {
       this.customers = customers;
       this.loading = false;
 
