@@ -14,7 +14,7 @@
       'order_status'
     ]"
     [tableStyle]="{ 'min-width': ' 115rem' }"
-    styleClass="p-datatable-sm"
+    styleClass="p-datatable-sm p-datatable-striped"
   >
     <!-- <ng-template pTemplate="caption">
       <div class="flex">
@@ -32,7 +32,7 @@
       </div>
     </ng-template> -->
     <ng-template pTemplate="header">
-      <tr>
+      <tr style="font-size: 0.75rem">
         <th>Date Created</th>
         <th>User ID</th>
         <th>Order ID</th>
@@ -42,7 +42,7 @@
         <th>Order Amount</th>
         <th>Action</th>
       </tr>
-      <tr>
+      <tr style="font-size: 0.75rem">
         <th>
           <p-columnFilter
             type="text"
@@ -93,14 +93,14 @@
                 placeholder="Select Order Status"
                 [showClear]="true"
               >
-                <ng-template let-option pTemplate="item">
+                <ng-template let-option pTemplate="item" class>
                   <p-tag [value]="option" [severity]="getSeverity(option)" />
                 </ng-template>
               </p-dropdown>
             </ng-template>
           </p-columnFilter>
         </th>
-        <th style="width: 100px">
+        <th>
           <p-columnFilter
             field="withdrawal_status"
             matchMode="equals"
@@ -137,7 +137,7 @@
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-payment>
-      <tr>
+      <tr style="font-size: 0.75rem">
         <td>
           {{ payment.date_created }}
         </td>
