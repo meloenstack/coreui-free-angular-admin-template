@@ -17,7 +17,7 @@ export const routes: Routes = [
       {
         path: 'payments',
         loadChildren: () =>
-          import('./views/payments/routes').then((m) => m.routes),
+          import('./views/payments/payments.routes').then((m) => m.routes),
       },
       {
         path: 'dashboard',
