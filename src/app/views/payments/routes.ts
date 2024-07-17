@@ -1,10 +1,12 @@
+import { PendingComponent } from './remittance/pending/pending.component';
+import { RemittanceComponent } from './remittance/remittance.component';
+import { PaymentsComponent } from './payments.component';
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
     path: '',
-    loadComponent: () =>
-      import('./payments.component').then((m) => m.PaymentsComponent),
+    component: PaymentsComponent,
     children: [
       {
         path: '',
@@ -13,10 +15,18 @@ export const routes: Routes = [
       },
       {
         path: 'remittance',
-        loadComponent: () =>
-          import('./remittance/remittance.component').then(
-            (m) => m.RemittanceComponent
-          ),
+        component: RemittanceComponent,
+        children: [
+          {
+            path: '',
+            redirectTo: 'pending',
+            pathMatch: 'full',
+          },
+          {
+            path: 'pending',
+            component: PendingComponent,
+          },
+        ],
       },
     ],
   },
