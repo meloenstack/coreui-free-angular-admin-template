@@ -1,3 +1,4 @@
+import { Payments } from './../../interface/payments.interface';
 import { PaymentsService } from '../../payments.service';
 import { Component, OnInit } from '@angular/core';
 import { TableModule, Table } from 'primeng/table';
@@ -53,11 +54,17 @@ export interface Customer {
   providers: [PaymentsService],
 })
 export class PendingComponent implements OnInit {
-  customers!: Customer[];
+  payments!: Payments[];
 
   representatives!: Representative[];
 
-  statuses!: any[];
+  order_statuses: string[] = ['Pending', 'Completed', 'Rejected', 'Cancelled'];
+  withdrawal_statuses: string[] = [
+    'Pending',
+    'Completed',
+    'Rejected',
+    'Cancelled',
+  ];
 
   loading: boolean = true;
 
@@ -66,36 +73,14 @@ export class PendingComponent implements OnInit {
   constructor(private paymentsService: PaymentsService) {}
 
   ngOnInit() {
-    this.paymentsService.getCustomersLarge().then((customers) => {
-      this.customers = customers;
+    this.paymentsService.getData().then((payments) => {
+      this.payments = payments;
       this.loading = false;
 
-      this.customers.forEach(
-        (customer) => (customer.date = new Date(<Date>customer.date))
-      );
+      // this.payments.forEach(
+      //   (payment) => (payment.date_created = new Date(<Date>customer.date))
+      // );
     });
-
-    this.representatives = [
-      { name: 'Amy Elsner', image: 'amyelsner.png' },
-      { name: 'Anna Fali', image: 'annafali.png' },
-      { name: 'Asiya Javayant', image: 'asiyajavayant.png' },
-      { name: 'Bernardo Dominic', image: 'bernardodominic.png' },
-      { name: 'Elwin Sharvill', image: 'elwinsharvill.png' },
-      { name: 'Ioni Bowcher', image: 'ionibowcher.png' },
-      { name: 'Ivan Magalhaes', image: 'ivanmagalhaes.png' },
-      { name: 'Onyama Limba', image: 'onyamalimba.png' },
-      { name: 'Stephen Shaw', image: 'stephenshaw.png' },
-      { name: 'Xuxue Feng', image: 'xuxuefeng.png' },
-    ];
-
-    this.statuses = [
-      { label: 'Unqualified', value: 'unqualified' },
-      { label: 'Qualified', value: 'qualified' },
-      { label: 'New', value: 'new' },
-      { label: 'Negotiation', value: 'negotiation' },
-      { label: 'Renewal', value: 'renewal' },
-      { label: 'Proposal', value: 'proposal' },
-    ];
   }
 
   clear(table: Table) {
@@ -104,20 +89,14 @@ export class PendingComponent implements OnInit {
 
   getSeverity(status: string) {
     switch (status) {
-      case 'unqualified':
-        return 'danger';
-
-      case 'qualified':
-        return 'success';
-
-      case 'new':
-        return 'info';
-
-      case 'negotiation':
+      case 'Pending':
         return 'warning';
-
-      case 'renewal':
-        return undefined;
+      case 'Completed':
+        return 'success';
+      case 'Rejected':
+        return 'danger';
+      case 'Cancelled':
+        return 'danger';
       default:
         return 'success';
     }

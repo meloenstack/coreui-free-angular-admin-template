@@ -1,19 +1,20 @@
 <div class="card">
   <p-table
     #dt2
-    [value]="customers"
+    [value]="payments"
     dataKey="id"
     [rows]="10"
     [rowsPerPageOptions]="[10, 25, 50]"
     [loading]="loading"
     [paginator]="true"
     [globalFilterFields]="[
-      'name',
-      'country.name',
-      'representative.name',
-      'status'
+      'date_created',
+      'user_id',
+      'order_id',
+      'order_status'
     ]"
-    [tableStyle]="{ 'min-width': '75rem' }"
+    [tableStyle]="{ 'min-width': ' 115rem' }"
+    styleClass="p-datatable-sm"
   >
     <!-- <ng-template pTemplate="caption">
       <div class="flex">
@@ -32,29 +33,54 @@
     </ng-template> -->
     <ng-template pTemplate="header">
       <tr>
-        <th style="width: 22%">Name</th>
-        <th style="width: 22%">Country</th>
-        <th style="width: 22%">Status</th>
+        <th>Date Created</th>
+        <th>User ID</th>
+        <th>Order ID</th>
+        <th>Payment Channel</th>
+        <th>Order Status</th>
+        <th>Withdrawal Status</th>
+        <th>Order Amount</th>
+        <th>Action</th>
       </tr>
       <tr>
         <th>
           <p-columnFilter
             type="text"
-            field="name"
-            placeholder="Search by name"
-            ariaLabel="Filter Name"
+            field="date_created"
+            placeholder="Search by Date"
+            ariaLabel="Filter Date"
           />
         </th>
         <th>
           <p-columnFilter
             type="text"
-            field="country.name"
-            placeholder="Search by country"
-            ariaLabel="Filter Country"
+            field="user_id"
+            placeholder="Search by UID"
+            ariaLabel="Filter UID"
           />
         </th>
         <th>
-          <p-columnFilter field="status" matchMode="equals" [showMenu]="false">
+          <p-columnFilter
+            type="text"
+            field="order_id"
+            placeholder="Search by OID"
+            ariaLabel="Filter OID"
+          />
+        </th>
+        <th>
+          <p-columnFilter
+            type="text"
+            field="payment_channel"
+            placeholder="Search by Payment Channel"
+            ariaLabel="Filter Payment Channel"
+          />
+        </th>
+        <th>
+          <p-columnFilter
+            field="order_status"
+            matchMode="equals"
+            [showMenu]="false"
+          >
             <ng-template
               pTemplate="filter"
               let-value
@@ -62,49 +88,89 @@
             >
               <p-dropdown
                 ngModel="value"
-                [options]="statuses"
+                [options]="order_statuses"
                 (onChange)="filter($event.value)"
-                placeholder="Select One"
+                placeholder="Select Order Status"
                 [showClear]="true"
               >
                 <ng-template let-option pTemplate="item">
-                  <p-tag
-                    [value]="option.value"
-                    [severity]="getSeverity(option.label)"
-                  />
+                  <p-tag [value]="option" [severity]="getSeverity(option)" />
                 </ng-template>
               </p-dropdown>
             </ng-template>
           </p-columnFilter>
         </th>
+        <th style="width: 100px">
+          <p-columnFilter
+            field="withdrawal_status"
+            matchMode="equals"
+            [showMenu]="false"
+          >
+            <ng-template
+              pTemplate="filter"
+              let-value
+              let-filter="filterCallback"
+            >
+              <p-dropdown
+                ngModel="value"
+                [options]="withdrawal_statuses"
+                (onChange)="filter($event.value)"
+                placeholder="Select Withdrawal Status"
+                [showClear]="true"
+              >
+                <ng-template let-option pTemplate="item">
+                  <p-tag [value]="option" [severity]="getSeverity(option)" />
+                </ng-template>
+              </p-dropdown>
+            </ng-template>
+          </p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter
+            type="text"
+            field="order_amount"
+            placeholder="Search by Order Amount"
+            ariaLabel="Filter Order Amount"
+          />
+        </th>
+        <th></th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-customer>
+    <ng-template pTemplate="body" let-payment>
       <tr>
         <td>
-          {{ customer.name }}
+          {{ payment.date_created }}
         </td>
         <td>
-          <img
-            src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
-            [class]="'flag flag-' + customer.country.code"
-            style="width: 20px"
-          />
-          <span class="ml-1 vertical-align-middle">
-            {{ customer.country.name }}
-          </span>
+          {{ payment.user_id }}
+        </td>
+        <td>
+          {{ payment.order_id }}
+        </td>
+        <td>
+          {{ payment.payment_channel }}
         </td>
         <td>
           <p-tag
-            [value]="customer.status"
-            [severity]="getSeverity(customer.status)"
+            [value]="payment.order_status"
+            [severity]="getSeverity(payment.order_status)"
           />
         </td>
+        <td>
+          <p-tag
+            [value]="payment.withdrawal_status"
+            [severity]="getSeverity(payment.withdrawal_status)"
+          />
+        </td>
+        <td>
+          {{ payment.order_amount }}
+        </td>
+        <td>For Payout</td>
       </tr>
     </ng-template>
     <ng-template pTemplate="emptymessage">
       <tr>
-        <td colspan="5">No customers found.</td>
+        <td colspan="8">No customers found.</td>
       </tr>
     </ng-template>
   </p-table>
