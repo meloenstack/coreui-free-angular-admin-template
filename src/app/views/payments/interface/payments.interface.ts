@@ -1,5 +1,6 @@
 export interface Payments {
-  date_created: string;
+  date_created: Date;
+  date_created_1?: Date;
   user_id: number;
   order_id: number;
   payment_channel: string;

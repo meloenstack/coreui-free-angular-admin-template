@@ -7,7 +7,7 @@ export class PaymentsService {
   fetchData() {
     return [
       {
-        date_created: '2022-01-01',
+        date_created: new Date('01/01/2022'),
         user_id: 1,
         order_id: 1001,
         payment_channel: 'PayPal',
@@ -18,7 +18,7 @@ export class PaymentsService {
         total_withdrawal: 0,
       },
       {
-        date_created: '2022-01-02',
+        date_created: new Date('01/02/2022'),
         user_id: 2,
         order_id: 1002,
         payment_channel: 'Stripe',
@@ -29,7 +29,7 @@ export class PaymentsService {
         total_withdrawal: 0,
       },
       {
-        date_created: '2022-01-03',
+        date_created: new Date('01/03/2022'),
         user_id: 3,
         order_id: 1003,
         payment_channel: 'PayPal',
@@ -40,7 +40,7 @@ export class PaymentsService {
         total_withdrawal: 10.99,
       },
       {
-        date_created: '2022-01-04',
+        date_created: new Date('01/04/2022'),
         user_id: 4,
         order_id: 1004,
         payment_channel: 'Stripe',
@@ -51,7 +51,7 @@ export class PaymentsService {
         total_withdrawal: 15.99,
       },
       {
-        date_created: '2022-01-05',
+        date_created: new Date('01/05/2022'),
         user_id: 5,
         order_id: 1005,
         payment_channel: 'PayPal',

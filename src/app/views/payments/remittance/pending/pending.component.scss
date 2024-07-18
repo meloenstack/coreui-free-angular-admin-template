@@ -21,3 +21,20 @@
   background-color: lightgray;
   font-weight: bold;
 }
+
+::ng-deep .p-datepicker {
+  z-index: 9999 !important;
+}
+
+::ng-deep .date-filter > div > button {
+  display: none;
+}
+::ng-deep .date-filter > .p-column-filter {
+  width: 95px;
+}
+
+::ng-deep .container-date-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}

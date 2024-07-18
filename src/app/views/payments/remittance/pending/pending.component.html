@@ -7,12 +7,7 @@
     [rowsPerPageOptions]="[10, 25, 50]"
     [loading]="loading"
     [paginator]="true"
-    [globalFilterFields]="[
-      'date_created',
-      'user_id',
-      'order_id',
-      'order_status'
-    ]"
+    [globalFilterFields]="['date_created']"
     styleClass="p-datatable-sm p-datatable-striped"
   >
     <!-- <ng-template pTemplate="caption">
@@ -24,7 +19,7 @@
           <input
             pInputText
             type="text"
-            (input)="dt2.filterGlobal($event.target.value, 'contains')"
+            (input)="dt2.filterGlobal($any($event.target.)value, 'contains')"
             placeholder="Search keyword"
           />
         </p-iconField>
@@ -32,7 +27,11 @@
     </ng-template> -->
     <ng-template pTemplate="header">
       <tr style="font-size: 0.9rem">
-        <th style="padding: 16px 8px" pSortableColumn="date_created">
+        <th
+          colspan="2"
+          style="padding: 16px 8px"
+          pSortableColumn="date_created"
+        >
           Date Created <p-sortIcon field="date_created" />
         </th>
         <th pSortableColumn="user_id">
@@ -64,10 +63,24 @@
       <tr style="font-size: 0.75rem">
         <th>
           <p-columnFilter
-            type="text"
+            type="date"
             field="date_created"
-            placeholder="Date"
-            ariaLabel="Filter Date"
+            placeholder="Start"
+            ariaLabel="Filter Start Date"
+            matchMode="gte"
+            showMenu="false"
+            class="date-filter"
+          />
+        </th>
+        <th>
+          <p-columnFilter
+            type="date"
+            field="date_created_1"
+            placeholder="End"
+            ariaLabel="Filter End Date"
+            matchMode="lte"
+            showMenu="false"
+            class="date-filter"
           />
         </th>
         <th>
@@ -76,6 +89,7 @@
             field="user_id"
             placeholder="UID"
             ariaLabel="Filter UID"
+            matchMode="contains"
           />
         </th>
         <th>
@@ -84,6 +98,7 @@
             field="order_id"
             placeholder="OID"
             ariaLabel="Filter OID"
+            matchMode="contains"
           />
         </th>
         <th>
@@ -92,6 +107,7 @@
             field="payment_channel"
             placeholder="Payment Channel"
             ariaLabel="Filter Payment Channel"
+            matchMode="contains"
           />
         </th>
         <th>
@@ -154,6 +170,7 @@
             field="order_amount"
             placeholder="Order Amount"
             ariaLabel="Filter Order Amount"
+            matchMode="contains"
           />
         </th>
         <th>Stage For Payout</th>
@@ -161,8 +178,8 @@
     </ng-template>
     <ng-template pTemplate="body" let-payment>
       <tr style="font-size: 0.75rem">
-        <td>
-          {{ payment.date_created }}
+        <td colspan="2">
+          {{ payment.date_created.toLocaleString().split(",")[0] }}
         </td>
         <td>
           {{ payment.user_id }}
