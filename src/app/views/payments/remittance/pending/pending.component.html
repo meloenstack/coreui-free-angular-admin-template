@@ -13,7 +13,6 @@
       'order_id',
       'order_status'
     ]"
-    [tableStyle]="{ 'min-width': ' 115rem' }"
     styleClass="p-datatable-sm p-datatable-striped"
   >
     <!-- <ng-template pTemplate="caption">
@@ -40,14 +39,14 @@
         <th>Order Status</th>
         <th>Withdrawal Status</th>
         <th>Order Amount</th>
-        <th>Action</th>
+        <th style="padding-right: 48px">Action</th>
       </tr>
       <tr style="font-size: 0.75rem">
         <th>
           <p-columnFilter
             type="text"
             field="date_created"
-            placeholder="Search by Date"
+            placeholder="Date"
             ariaLabel="Filter Date"
           />
         </th>
@@ -55,7 +54,7 @@
           <p-columnFilter
             type="text"
             field="user_id"
-            placeholder="Search by UID"
+            placeholder="UID"
             ariaLabel="Filter UID"
           />
         </th>
@@ -63,7 +62,7 @@
           <p-columnFilter
             type="text"
             field="order_id"
-            placeholder="Search by OID"
+            placeholder="OID"
             ariaLabel="Filter OID"
           />
         </th>
@@ -71,7 +70,7 @@
           <p-columnFilter
             type="text"
             field="payment_channel"
-            placeholder="Search by Payment Channel"
+            placeholder="Payment Channel"
             ariaLabel="Filter Payment Channel"
           />
         </th>
@@ -79,6 +78,7 @@
           <p-columnFilter
             field="order_status"
             matchMode="equals"
+            class="filter-dropdown"
             [showMenu]="false"
           >
             <ng-template
@@ -90,7 +90,8 @@
                 ngModel="value"
                 [options]="order_statuses"
                 (onChange)="filter($event.value)"
-                placeholder="Select Order Status"
+                placeholder="Select Status"
+                class="status-dropdown"
                 [showClear]="true"
               >
                 <ng-template let-option pTemplate="item" class>
@@ -104,6 +105,7 @@
           <p-columnFilter
             field="withdrawal_status"
             matchMode="equals"
+            class="filter-dropdown"
             [showMenu]="false"
           >
             <ng-template
@@ -115,7 +117,8 @@
                 ngModel="value"
                 [options]="withdrawal_statuses"
                 (onChange)="filter($event.value)"
-                placeholder="Select Withdrawal Status"
+                placeholder="Select Status"
+                class="status-dropdown"
                 [showClear]="true"
               >
                 <ng-template let-option pTemplate="item">
@@ -129,11 +132,11 @@
           <p-columnFilter
             type="text"
             field="order_amount"
-            placeholder="Search by Order Amount"
+            placeholder="Order Amount"
             ariaLabel="Filter Order Amount"
           />
         </th>
-        <th></th>
+        <th>Stage For Payout</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-payment>

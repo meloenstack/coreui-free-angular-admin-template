@@ -38,6 +38,7 @@ export interface Customer {
 @Component({
   selector: 'app-pending',
   templateUrl: './pending.component.html',
+  styleUrl: './pending.component.scss',
   standalone: true,
   imports: [
     TableModule,

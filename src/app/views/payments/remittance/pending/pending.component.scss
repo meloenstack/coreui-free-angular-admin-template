@@ -1,0 +1,15 @@
+:host ::ng-deep .status-dropdown .p-dropdown-label {
+  font-size: 12px !important;
+}
+
+// :host ::ng-deep .p-datatable .p-datatable-thead > tr > th {
+//   width: 100px;
+// }
+
+:host ::ng-deep .p-column-filter {
+  width: 160px;
+}
+
+:host ::ng-deep .p-column-filter > button {
+  margin-left: 5px;
+}
