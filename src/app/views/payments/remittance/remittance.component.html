@@ -4,32 +4,36 @@
       <li class="nav-item round-left">
         <a
           class="nav-link"
-          routerLink="/pages/payments/remittance/pending"
+          routerLink="/payments/remittance/pending"
           routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
           >Pending</a
         >
       </li>
       <li class="nav-item inner-nav-item">
         <a
           class="nav-link"
-          routerLink="/pages/payments/remittance/for-payout"
+          routerLink="/payments/remittance/for-payout"
           routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
           >For Payout</a
         >
       </li>
       <li class="nav-item inner-nav-item">
         <a
           class="nav-link"
-          routerLink="/pages/payments/remittance/paid-out"
+          routerLink="/payments/remittance/paid-out"
           routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
           >Paid Out</a
         >
       </li>
       <li class="nav-item round-right">
         <a
           class="nav-link"
-          routerLink="/pages/payments/remittance/all"
+          routerLink="/payments/remittance/all"
           routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
           >All</a
         >
       </li>
