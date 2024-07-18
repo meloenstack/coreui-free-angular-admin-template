@@ -31,14 +31,34 @@
       </div>
     </ng-template> -->
     <ng-template pTemplate="header">
-      <tr style="font-size: 0.75rem">
-        <th>Date Created</th>
-        <th>User ID</th>
-        <th>Order ID</th>
-        <th>Payment Channel</th>
-        <th>Order Status</th>
-        <th>Withdrawal Status</th>
-        <th>Order Amount</th>
+      <tr style="font-size: 0.9rem">
+        <th style="padding: 16px 8px" pSortableColumn="date_created">
+          Date Created <p-sortIcon field="date_created" />
+        </th>
+        <th pSortableColumn="user_id">
+          User ID
+          <p-sortIcon field="user_id" />
+        </th>
+        <th pSortableColumn="order_id">
+          Order ID
+          <p-sortIcon field="order_id" />
+        </th>
+        <th pSortableColumn="payment_channel">
+          Payment Channel
+          <p-sortIcon field="payment_channel" />
+        </th>
+        <th pSortableColumn="order_status">
+          Order Status
+          <p-sortIcon field="order_status" />
+        </th>
+        <th pSortableColumn="withdrawal_status">
+          Withdrawal Status
+          <p-sortIcon field="withdrawal_status" />
+        </th>
+        <th pSortableColumn="order_amount">
+          Order Amount
+          <p-sortIcon field="order_amount" />
+        </th>
         <th style="padding-right: 48px">Action</th>
       </tr>
       <tr style="font-size: 0.75rem">
