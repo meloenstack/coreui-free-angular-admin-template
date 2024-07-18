@@ -13,3 +13,11 @@
 :host ::ng-deep .p-column-filter > button {
   margin-left: 5px;
 }
+
+:host ::ng-deep .col-action > span {
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  background-color: lightgray;
+  font-weight: bold;
+}
